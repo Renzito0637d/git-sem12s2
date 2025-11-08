@@ -3,14 +3,12 @@ WORKDIR /app/
 #RUN mkdir -p /app/app/data
 
 # Copiar todo el código fuente del proyecto
-COPY app ./ 
+COPY . ./
 
 # Construir proyecto
 RUN mvn -B -DskipTests=true clean package
 
 FROM eclipse-temurin:21-jre
-
-
 
 # Copiar el archivo jar compilado
 COPY --from=build /app/target/*.jar app.jar
