@@ -16,7 +16,7 @@ public class IncidentsApplication {
 class StatusController {
     @GetMapping("/status")
     public String status() {
-        return "OK";
+        return "notOK";
     }
 
     // intentionally bad variable name to trigger checkstyle
