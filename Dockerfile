@@ -9,13 +9,10 @@ COPY app ./
 RUN mvn -B -DskipTests=true clean package
 
 FROM eclipse-temurin:21-jre
-WORKDIR /app/
-# RUN mkdir -p /app/autenticar/db
+
+
 
 # Copiar el archivo jar compilado
-COPY --from=build /app/app/target/*.jar app.jar
-
-# Copiar archivo de base de datos SQLite al contenedor
-# COPY app/data/incident.db /app/app/data/incident.db
+COPY --from=build /app/target/*.jar app.jar
 
 CMD ["sh","-c","java -Dserver.port=${PORT:-4002} -jar /app/app.jar"]
